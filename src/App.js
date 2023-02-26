@@ -1,19 +1,7 @@
 import { useState, useEffect } from "react";
 import { postsService } from "./services/PostsService";
+import "../src/styles/style.css";
 
-function App() {
-  const [posts, setPosts] = useState();
-
-  useEffect(() => {
-    handleGetPosts();
-  }, [posts]);
-
-  const handleGetPosts = async () => {
-    const posts = await postsService.getPosts();
-    console.log(posts);
-  };
-
-  return <div>Hello</div>;
-}
+function App() {}
 
 export default App;

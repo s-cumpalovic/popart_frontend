@@ -1,0 +1,39 @@
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-group {
+  margin: 10rem 0 0 0;
+  width: 30rem;
+  font-family: "Times New Roman", Times, serif;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
+
+.form-group input {
+  margin: 1rem 0 1rem 0;
+  padding: 0.5rem;
+}
+
+.form-group textarea {
+  margin: 1rem 0 1rem 0;
+  height: 10rem;
+  font-size: 1rem;
+  resize: none;
+}
+
+.form-group button {
+  margin: 2rem 0 1rem 0;
+  color: white;
+  background-color: #9c27b0;
+  padding: 1rem;
+}
+
+.form-group select {
+  margin: 0.5rem 0 1rem 0;
+  padding: 1rem;
+  border-color: #ef5350;
+  background-color: white;
+  border-radius: 1em;
+}
