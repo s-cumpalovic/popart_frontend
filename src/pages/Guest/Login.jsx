@@ -1,21 +1,22 @@
 import React from "react";
 import { UserFormComponent } from "../../components/User/FormComponent";
 import { useUser } from "../../hooks/useAuth";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Login = () => {
   const { login, isLoading, isError } = useUser();
-
+  const history = useHistory();
   const handleSubmit = async (data) => {
-    try {
       await login(data);
-    } catch (error) {
-      console.log(error);
-    }
+      alert("Login succesfful!");
+      history.push("/posts");
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="grid-container">
+      <div className="landing-page">
+        <h1 className="landing-header">Login</h1>
+      </div>
       <UserFormComponent onSubmit={handleSubmit} />
     </div>
   );

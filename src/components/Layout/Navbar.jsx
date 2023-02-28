@@ -23,11 +23,12 @@ export default function Navbar() {
           ></IconButton>
           <Typography
             color="#2769e3"
-            variant="h5"
+            variant="h6"
             component="div"
             sx={{ flexGrow: 1 }}
           >
-            Pop - Up!
+            Pop-Up
+            {user?.name ? ` | Hello, ${user.name}!` : ""}
           </Typography>
           <Button href="/posts" color="info">
             Posts

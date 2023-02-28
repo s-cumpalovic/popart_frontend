@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect } from "react";
-import { useQuery, useMutation } from "react-query";
+import { useQuery } from "react-query";
 import { authService } from "../services/AuthService";
 import { setItem, removeItem, getItem } from "../utils/helpers";
 const UserContext = createContext();
@@ -14,9 +14,15 @@ const getUserFromLocalStorage = () => {
 };
 
 const setUserInLocalStorage = ({ token, user }) => {
-  setItem("token", token);
-  setItem("user", JSON.stringify(user));
-};
+    setItem("token", token);
+    if (user) {
+      try {
+        setItem("user", JSON.stringify(user));
+      } catch (error) {
+        console.error("Failed to stringify user for localStorage", error);
+      }
+    }
+  };
 
 const removeUserFromLocalStorage = () => {
   removeItem("token");
@@ -25,12 +31,14 @@ const removeUserFromLocalStorage = () => {
 
 const login = async (user) => {
   const response = await authService.login(user);
+  console.log(response.user);
   setUserInLocalStorage({ user: response.user, token: response.token });
   return response;
 };
 
 const register = async (user) => {
   const response = await authService.register(user);
+  console.log(response);
   setUserInLocalStorage({ user: response.user, token: response.token });
   return response;
 };
@@ -47,12 +55,6 @@ const UserProvider = ({ children }) => {
     "user",
     getUserFromLocalStorage
   );
-
-  useEffect(() => {
-    if (isError) {
-      removeUserFromLocalStorage();
-    }
-  }, [isError]);
 
   const value = {
     user: data?.user,
